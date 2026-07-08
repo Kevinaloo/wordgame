@@ -37,72 +37,32 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html,
-body {
+html, body {
   background: var(--board);
   color: var(--cream);
+  /* Prevent bounce scroll on iOS */
+  overscroll-behavior: none;
 }
 
 body {
   font-family: var(--font-body), sans-serif;
+  /* Support iPhone home bar */
+  padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* Safe-area bottom padding for sticky keyboard */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 ::selection {
   background: var(--gold);
   color: var(--ink);
-}
-
-/* Dual-range slider: two native range inputs stacked on top of each other.
-   Each input's track is transparent; only its thumb is interactive. */
-.range-slider {
-  position: relative;
-  height: 2.25rem;
-}
-
-.range-slider input[type="range"] {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  margin: 0;
-  background: transparent;
-  pointer-events: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.range-slider input[type="range"]::-webkit-slider-thumb {
-  pointer-events: auto;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: var(--gold);
-  border: 3px solid var(--wood-dark);
-  cursor: pointer;
-  margin-top: -8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.range-slider input[type="range"]::-moz-range-thumb {
-  pointer-events: auto;
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: var(--gold);
-  border: 3px solid var(--wood-dark);
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.range-slider input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  background: transparent;
-}
-
-.range-slider input[type="range"]::-moz-range-track {
-  height: 4px;
-  background: transparent;
 }
