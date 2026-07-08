@@ -5,7 +5,6 @@ const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "900"],
-  style: ["normal", "italic"],
 });
 
 const plexSans = IBM_Plex_Sans({
@@ -21,18 +20,35 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata = {
-  title: "Rackwords — find words from your letters",
-  description:
-    "Turn a rack of letters into every valid word in range, sorted by how common each word is. Built for word-game players who need answers fast.",
+  title: "Rackwords",
+  description: "Find words from your letters instantly",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Rackwords",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#16211b",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable} h-full`}
+      className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
